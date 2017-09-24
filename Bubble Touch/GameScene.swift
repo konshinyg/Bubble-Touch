@@ -7,83 +7,136 @@
 //
 
 import SpriteKit
-import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    // Sprites
+    var bg = SKSpriteNode()
+    var bubble = SKSpriteNode()
+    
+    // Textures
+    var bgTexture: SKTexture!
+    var bubbleTexture: SKTexture!
+    
+    // Objects
+    var bgObject = SKNode()
+    var bubbleObject = SKNode()
+    var wallsObject = SKNode()
+    
+    // Timers
+    var bubbleTimer = Timer()
+    
+    // Bit masks
+    var bubbleGroup: UInt32 = 0x1 << 1
+    var wallsGroup: UInt32 = 0x1 << 2
     
     override func didMove(to view: SKView) {
+        createObjects()
+//        self.physicsWorld.contactDelegate = self
+        createGame()
+    }
+    
+    func createObjects() {
+        self.addChild(bgObject)
+        self.addChild(bubbleObject)
+        self.addChild(wallsObject)
+    }
+    
+    func createGame() {
+        createBackground()
+        createBubble()
+        createWalls()
+        timersFunc()
+    }
+    
+    func timersFunc() {
+        bubbleTimer.invalidate()
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
+        bubbleTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(createBubble), userInfo: nil, repeats: true)
+    }
+    
+    func createBackground() {
+        bgTexture = SKTexture(imageNamed: "backboard.jpg")
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        let moveBg = SKAction.moveBy(x: 0, y: -bgTexture.size().height, duration: 30)
+        let replaceBg = SKAction.moveBy(x: 0, y: bgTexture.size().height, duration: 0)
+        let moveBgForever = SKAction.repeatForever(SKAction.sequence([moveBg, replaceBg]))
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+        for i in 0..<3 {
+            bg = SKSpriteNode(texture: bgTexture)
+            bg.position = CGPoint(x: size.width/2, y: size.height/4 + bgTexture.size().height * CGFloat(i))
+            bg.run(moveBgForever)
+            bg.zPosition = -1
+            bgObject.addChild(bg)
         }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
+    func createWalls() {
+        let wall_left = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 10, height: 667))
+        wall_left.strokeColor = SKColor.white
+        wall_left.fillColor = SKColor.black
+        wall_left.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_left.frame.size.width, height: wall_left.frame.size.height), center: CGPoint(x: 5, y: 333))
+        wall_left.physicsBody?.isDynamic = false
+        wall_left.physicsBody?.categoryBitMask = wallsGroup
+        wallsObject.addChild(wall_left)
+
+        let wall_right = SKShapeNode(rect: CGRect(x: 365, y: 0, width: 10, height: 667))
+        wall_right.strokeColor = SKColor.white
+        wall_right.fillColor = SKColor.black
+        wall_right.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_right.frame.size.width, height: wall_right.frame.size.height), center: CGPoint(x: 370, y: 333))
+        wall_right.physicsBody?.categoryBitMask = wallsGroup
+        wall_right.physicsBody?.isDynamic = false
+        wallsObject.addChild(wall_right)
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+    func createBubble() {
+        // color choosing
+        let bubbleTextureArray = ["bubble_blue.png", "bubble_gray.png", "bubble_green.png", "bubble_purple.png", "bubble_red.png", "bubble_yellow.png"]
+        let bubbleColorChoosing = arc4random() % 6
+        let bubbleImage = String(describing: bubbleTextureArray[Int(bubbleColorChoosing)])
+        bubbleTexture = SKTexture(imageNamed: bubbleImage)
+        bubble = SKSpriteNode(texture: bubbleTexture)
+        
+        // size & position choosing
+        let sizeRand = CGFloat(UInt32(50) + arc4random() % 25)
+        bubble.size.width = sizeRand
+        bubble.size.height = sizeRand
+        let bubblePositionChoosing = arc4random() % 275
+        let bubbleCenter = CGPoint(x: 51 + CGFloat(bubblePositionChoosing), y: -self.frame.size.height/6)
+        bubble.position = bubbleCenter
+        
+        // physics
+        bubble.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bubble.size.width, height: bubble.size.height))
+        bubble.physicsBody?.categoryBitMask = bubbleGroup
+        bubble.physicsBody?.contactTestBitMask = wallsGroup
+        bubble.physicsBody?.collisionBitMask = wallsGroup
+        bubble.physicsBody?.isDynamic = true
+        bubble.physicsBody?.affectedByGravity = false
+        bubble.physicsBody?.allowsRotation = true
+        
+        // movement choosing
+        let bubbleDirectionChoosing = arc4random() % 2
+        var bubbleMovementChoosing = Int32(arc4random() % 275)
+        if bubbleDirectionChoosing == 0 { bubbleMovementChoosing *= -1 }
+        let bubbleDuration = (arc4random() % 3) + 5
+        let moveBubble = SKAction.moveBy(x: CGFloat(bubbleMovementChoosing), y: self.frame.size.height + self.frame.size.height/4, duration: TimeInterval(bubbleDuration))
+        let removeBubble = SKAction.removeFromParent()
+        let moveBubbleRepeater = SKAction.repeatForever(SKAction.sequence([moveBubble, removeBubble]))
+        bubble.run(moveBubbleRepeater)
+        
+        bubbleObject.addChild(bubble)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
     
     
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
