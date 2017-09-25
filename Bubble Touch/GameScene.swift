@@ -10,6 +10,8 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var viewTouchLocation = CGPoint()
+    
     // Sprites
     var bg = SKSpriteNode()
     var bubble = SKSpriteNode()
@@ -30,10 +32,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bubbleGroup: UInt32 = 0x1 << 1
     var wallsGroup: UInt32 = 0x1 << 2
     
+    // Sounds
+    var bubbleTouchSound1 = SKAction()
+    var bubbleTouchSound2 = SKAction()
+    var bubbleTouchSound3 = SKAction()
+    var bubbleTouchSound4 = SKAction()
+    var bubbleTouchSound5 = SKAction()
+    var bubbleTouchSound6 = SKAction()
+    var bubbleTouchSound7 = SKAction()
+    var bubbleTouchSound8 = SKAction()
+    var bubbleTouchSound9 = SKAction()
+    var bubbleTouchSound0 = SKAction()
+    var soundsArray = [SKAction]()
+    
     override func didMove(to view: SKView) {
         createObjects()
-//        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.contactDelegate = self
         createGame()
+        
+        bubbleTouchSound1 = SKAction.playSoundFileNamed("burp1", waitForCompletion: false)
+        bubbleTouchSound2 = SKAction.playSoundFileNamed("burp2", waitForCompletion: false)
+        bubbleTouchSound3 = SKAction.playSoundFileNamed("burp3", waitForCompletion: false)
+        bubbleTouchSound4 = SKAction.playSoundFileNamed("pu1", waitForCompletion: false)
+        bubbleTouchSound5 = SKAction.playSoundFileNamed("pu2", waitForCompletion: false)
+        bubbleTouchSound6 = SKAction.playSoundFileNamed("pu3", waitForCompletion: false)
+        bubbleTouchSound7 = SKAction.playSoundFileNamed("pu4", waitForCompletion: false)
+        bubbleTouchSound8 = SKAction.playSoundFileNamed("pu5", waitForCompletion: false)
+        bubbleTouchSound9 = SKAction.playSoundFileNamed("pu6", waitForCompletion: false)
+        bubbleTouchSound0 = SKAction.playSoundFileNamed("pu7", waitForCompletion: false)
+        
+        soundsArray = [bubbleTouchSound1, bubbleTouchSound2, bubbleTouchSound3, bubbleTouchSound4, bubbleTouchSound5, bubbleTouchSound6, bubbleTouchSound7, bubbleTouchSound8, bubbleTouchSound9, bubbleTouchSound0]
     }
     
     func createObjects() {
@@ -51,7 +79,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func timersFunc() {
         bubbleTimer.invalidate()
-        
         bubbleTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(createBubble), userInfo: nil, repeats: true)
     }
     
@@ -103,14 +130,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bubble.size.width = sizeRand
         bubble.size.height = sizeRand
         let bubblePositionChoosing = arc4random() % 275
-        let bubbleCenter = CGPoint(x: 51 + CGFloat(bubblePositionChoosing), y: -self.frame.size.height/6)
+        let bubbleCenter = CGPoint(x: 50 + CGFloat(bubblePositionChoosing), y: -self.frame.size.height/6)
         bubble.position = bubbleCenter
         
         // physics
         bubble.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bubble.size.width, height: bubble.size.height))
         bubble.physicsBody?.categoryBitMask = bubbleGroup
         bubble.physicsBody?.contactTestBitMask = wallsGroup
-        bubble.physicsBody?.collisionBitMask = wallsGroup
         bubble.physicsBody?.isDynamic = true
         bubble.physicsBody?.affectedByGravity = false
         bubble.physicsBody?.allowsRotation = true
@@ -120,12 +146,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var bubbleMovementChoosing = Int32(arc4random() % 275)
         if bubbleDirectionChoosing == 0 { bubbleMovementChoosing *= -1 }
         let bubbleDuration = (arc4random() % 3) + 5
-        let moveBubble = SKAction.moveBy(x: CGFloat(bubbleMovementChoosing), y: self.frame.size.height + self.frame.size.height/4, duration: TimeInterval(bubbleDuration))
+        let moveBubble = SKAction.moveBy(x: CGFloat(bubbleMovementChoosing), y: self.frame.size.height + self.frame.size.height/2, duration: TimeInterval(bubbleDuration))
         let removeBubble = SKAction.removeFromParent()
         let moveBubbleRepeater = SKAction.repeatForever(SKAction.sequence([moveBubble, removeBubble]))
         bubble.run(moveBubbleRepeater)
-        
-        bubbleObject.addChild(bubble)
+                
+        bubbleObject.addChild(bubble)        
     }
     
     
