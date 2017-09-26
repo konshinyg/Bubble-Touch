@@ -13,6 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var viewTouchLocation = CGPoint()
     var score = 0
     var gameViewControllerBridge: GameViewController!
+    var sec = 60
     
     // Sprites
     var bg = SKSpriteNode()
@@ -30,20 +31,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Timers
     var bubbleTimer = Timer()
     var gameTimer = Timer()
+    var gameTimerUpdater = Timer()
     
     // Bit masks
     var bubbleGroup: UInt32 = 0x1 << 1
     var wallsGroup: UInt32 = 0x1 << 2
+    
+    // Sounds
+    var bells = SKAction.playSoundFileNamed("bells.wav", waitForCompletion: false)
+    var buttonPressSound = SKAction.playSoundFileNamed("button_press.wav", waitForCompletion: false)
 
-    var bells = SKAction()
 
     override func didMove(to view: SKView) {
         createObjects()
         self.physicsWorld.contactDelegate = self
         createGame()
-        bells = SKAction.playSoundFileNamed("bells.wav", waitForCompletion: false)
     }
-    
+        
     func createObjects() {
         self.addChild(bgObject)
         self.addChild(bubbleObject)
@@ -60,15 +64,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func stopGame() {
         bubbleTimer.invalidate()
         gameTimer.invalidate()
+        gameTimerUpdater.invalidate()
+
         self.removeAllActions()
         self.removeAllChildren()
 
         gameViewControllerBridge.endGame()
     }
     
+    func gameTimerUpdate() {
+        sec -= 1
+        let s = String(format: "00:%02d", sec)
+        gameViewControllerBridge.gameTimer.text = "\(s)"
+    }
+    
     func timersFunc() {
-        bubbleTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(createBubble), userInfo: nil, repeats: true)
-        gameTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(stopGame), userInfo: nil, repeats: false)
+        bubbleTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(createBubble), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 61, target: self, selector: #selector(stopGame), userInfo: nil, repeats: false)
+        gameTimerUpdater = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(gameTimerUpdate), userInfo: nil, repeats: true)
     }
     
     func createBackground() {
@@ -88,7 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createWalls() {
-        let wall_left = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 10, height: 667))
+        let wall_left = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 20, height: 667))
         wall_left.strokeColor = SKColor.white
         wall_left.fillColor = SKColor.black
         wall_left.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_left.frame.size.width, height: wall_left.frame.size.height), center: CGPoint(x: 5, y: 333))
@@ -96,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wall_left.physicsBody?.categoryBitMask = wallsGroup
         wallsObject.addChild(wall_left)
         
-        let wall_right = SKShapeNode(rect: CGRect(x: 365, y: 0, width: 10, height: 667))
+        let wall_right = SKShapeNode(rect: CGRect(x: 355, y: 0, width: 20, height: 667))
         wall_right.strokeColor = SKColor.white
         wall_right.fillColor = SKColor.black
         wall_right.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_right.frame.size.width, height: wall_right.frame.size.height), center: CGPoint(x: 370, y: 333))
@@ -152,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bubbleDirectionChoosing = arc4random() % 2
         var bubbleMovementChoosing = Int32(arc4random() % 275)
         if bubbleDirectionChoosing == 0 { bubbleMovementChoosing *= -1 }
-        let bubbleDuration = (arc4random() % 5) + 5
+        let bubbleDuration = (arc4random() % 3) + 5
         let moveBubble = SKAction.moveBy(x: CGFloat(bubbleMovementChoosing), y: self.frame.size.height + self.frame.size.height/2, duration: TimeInterval(bubbleDuration))
         let removeBubble = SKAction.removeFromParent()
         let moveBubbleRepeater = SKAction.repeatForever(SKAction.sequence([moveBubble, removeBubble]))
