@@ -10,9 +10,15 @@ extension GameScene {
             for currentBubble in bubbleObject.children {
                 viewTouchLocation = touch.location(in: bubbleObject)
                 if currentBubble.contains(viewTouchLocation) {
-                    let takeSound = arc4random() % 10
-                    run(soundsArray[Int(takeSound)])
+                    let takeSound = arc4random() % 43
+                    run(SoundBase.sharedInstance().soundsArray[Int(takeSound)])
+                    if currentBubble.name == "red" || currentBubble.name == "yellow" {
+                        score -= 20
+                    } else {
+                        score += 10
+                    }
                     currentBubble.removeFromParent()
+                    gameViewControllerBridge.scoreLabel.text = "\(score)"
                 }
             }
         }

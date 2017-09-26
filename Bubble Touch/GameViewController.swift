@@ -12,18 +12,54 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
+    @IBOutlet weak var woodenImage3: UIImageView!
+    @IBOutlet weak var backboard: UIImageView!
+    @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var finalScoreLabel: UILabel!
+    @IBOutlet weak var timesUpLabel: UILabel!
+    @IBOutlet weak var woodenImage1: UIImageView!
+    @IBOutlet weak var woodenImage2: UIImageView!
+    @IBOutlet weak var scoreLabel: UILabel!
+    let scene = GameScene(size: CGSize(width: 1024, height: 768))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let view = self.view as! SKView
-        let scene = GameScene(size: CGSize(width: 1024, height: 768))
         scene.scaleMode = .resizeFill
         
+        let view = self.view as! SKView
         view.presentScene(scene)
-//        view.showsPhysics = true
         view.ignoresSiblingOrder = true
-        view.showsFPS = true
-        view.showsNodeCount = true
+        scene.gameViewControllerBridge = self
+        
+        woodenImage1.isHidden = true
+        woodenImage2.isHidden = true
+        woodenImage3.isHidden = false
+        scoreLabel.isHidden = false
+        reloadButton.isHidden = true
+        finalScoreLabel.isHidden = true
+        timesUpLabel.isHidden = true
+        backboard.isHidden = true
+    }
+    
+    @IBAction func reloadGame(_ sender: UIButton) {
+        SoundBase.sharedInstance().startPlay(filename: "button_press.wav")
+        scene.score = 0
+        if let storyboard = storyboard {
+            let menuViewController = storyboard.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
+            navigationController?.pushViewController(menuViewController, animated: true)
+        }
+    }
+    
+    func endGame() {
+        finalScoreLabel.text = "score: \(scene.score) points"
+        woodenImage1.isHidden = false
+        woodenImage2.isHidden = false
+        woodenImage3.isHidden = true
+        scoreLabel.isHidden = true
+        reloadButton.isHidden = false
+        finalScoreLabel.isHidden = false
+        timesUpLabel.isHidden = false
+        backboard.isHidden = false
     }
     
     override var shouldAutorotate: Bool {

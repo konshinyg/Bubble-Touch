@@ -11,6 +11,8 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var viewTouchLocation = CGPoint()
+    var score = 0
+    var gameViewControllerBridge: GameViewController!
     
     // Sprites
     var bg = SKSpriteNode()
@@ -27,41 +29,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Timers
     var bubbleTimer = Timer()
+    var gameTimer = Timer()
     
     // Bit masks
     var bubbleGroup: UInt32 = 0x1 << 1
     var wallsGroup: UInt32 = 0x1 << 2
-    
-    // Sounds
-    var bubbleTouchSound1 = SKAction()
-    var bubbleTouchSound2 = SKAction()
-    var bubbleTouchSound3 = SKAction()
-    var bubbleTouchSound4 = SKAction()
-    var bubbleTouchSound5 = SKAction()
-    var bubbleTouchSound6 = SKAction()
-    var bubbleTouchSound7 = SKAction()
-    var bubbleTouchSound8 = SKAction()
-    var bubbleTouchSound9 = SKAction()
-    var bubbleTouchSound0 = SKAction()
-    var soundsArray = [SKAction]()
-    
+
+    var bells = SKAction()
+
     override func didMove(to view: SKView) {
         createObjects()
         self.physicsWorld.contactDelegate = self
         createGame()
-        
-        bubbleTouchSound1 = SKAction.playSoundFileNamed("burp1", waitForCompletion: false)
-        bubbleTouchSound2 = SKAction.playSoundFileNamed("burp2", waitForCompletion: false)
-        bubbleTouchSound3 = SKAction.playSoundFileNamed("burp3", waitForCompletion: false)
-        bubbleTouchSound4 = SKAction.playSoundFileNamed("pu1", waitForCompletion: false)
-        bubbleTouchSound5 = SKAction.playSoundFileNamed("pu2", waitForCompletion: false)
-        bubbleTouchSound6 = SKAction.playSoundFileNamed("pu3", waitForCompletion: false)
-        bubbleTouchSound7 = SKAction.playSoundFileNamed("pu4", waitForCompletion: false)
-        bubbleTouchSound8 = SKAction.playSoundFileNamed("pu5", waitForCompletion: false)
-        bubbleTouchSound9 = SKAction.playSoundFileNamed("pu6", waitForCompletion: false)
-        bubbleTouchSound0 = SKAction.playSoundFileNamed("pu7", waitForCompletion: false)
-        
-        soundsArray = [bubbleTouchSound1, bubbleTouchSound2, bubbleTouchSound3, bubbleTouchSound4, bubbleTouchSound5, bubbleTouchSound6, bubbleTouchSound7, bubbleTouchSound8, bubbleTouchSound9, bubbleTouchSound0]
+        bells = SKAction.playSoundFileNamed("bells.wav", waitForCompletion: false)
     }
     
     func createObjects() {
@@ -77,9 +57,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timersFunc()
     }
     
-    func timersFunc() {
+    func stopGame() {
         bubbleTimer.invalidate()
+        gameTimer.invalidate()
+        self.removeAllActions()
+        self.removeAllChildren()
+
+        gameViewControllerBridge.endGame()
+    }
+    
+    func timersFunc() {
         bubbleTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(createBubble), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(stopGame), userInfo: nil, repeats: false)
     }
     
     func createBackground() {
@@ -106,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wall_left.physicsBody?.isDynamic = false
         wall_left.physicsBody?.categoryBitMask = wallsGroup
         wallsObject.addChild(wall_left)
-
+        
         let wall_right = SKShapeNode(rect: CGRect(x: 365, y: 0, width: 10, height: 667))
         wall_right.strokeColor = SKColor.white
         wall_right.fillColor = SKColor.black
@@ -114,17 +103,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wall_right.physicsBody?.categoryBitMask = wallsGroup
         wall_right.physicsBody?.isDynamic = false
         wallsObject.addChild(wall_right)
-        
     }
     
     func createBubble() {
         // color choosing
-        let bubbleTextureArray = ["bubble_blue.png", "bubble_gray.png", "bubble_green.png", "bubble_purple.png", "bubble_red.png", "bubble_yellow.png"]
-        let bubbleColorChoosing = arc4random() % 6
-        let bubbleImage = String(describing: bubbleTextureArray[Int(bubbleColorChoosing)])
+//        let bubbleTextureArray = ["bubble_blue.png", "bubble_gray.png", "bubble_green.png", "bubble_purple.png", "bubble_red.png", "bubble_yellow.png"]
+        let bubbleSuperTextureArray = ["bubble_super_red.png", "bubble_super_yellow.png", "bubble_super_green.png", "bubble_super_purple.png", "bubble_super_cian.png", "bubble_super_blue.png", "bubble_super_pink.png"]
+        let bubbleColorChoosing = arc4random() % 7
+        let bubbleImage = String(describing: bubbleSuperTextureArray[Int(bubbleColorChoosing)])
         bubbleTexture = SKTexture(imageNamed: bubbleImage)
         bubble = SKSpriteNode(texture: bubbleTexture)
-        
+        switch bubbleColorChoosing {
+//        case 0 : bubble.name = "blue"
+//        case 1 : bubble.name = "gray"
+//        case 2 : bubble.name = "green"
+//        case 3 : bubble.name = "purple"
+//        case 4 : bubble.name = "red"
+//        case 5 : bubble.name = "yellow"
+//        default : break
+
+        case 0 : bubble.name = "red"
+        case 1 : bubble.name = "yellow"
+        case 2 : bubble.name = "green"
+        case 3 : bubble.name = "purple"
+        case 4 : bubble.name = "cian"
+        case 5 : bubble.name = "blue"
+        case 6 : bubble.name = "pink"
+        default : break
+        }
         // size & position choosing
         let sizeRand = CGFloat(UInt32(50) + arc4random() % 25)
         bubble.size.width = sizeRand
@@ -134,9 +140,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bubble.position = bubbleCenter
         
         // physics
-        bubble.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bubble.size.width, height: bubble.size.height))
+        bubble.physicsBody = SKPhysicsBody(circleOfRadius: sizeRand/2)
         bubble.physicsBody?.categoryBitMask = bubbleGroup
         bubble.physicsBody?.contactTestBitMask = wallsGroup
+        bubble.physicsBody?.collisionBitMask = wallsGroup
         bubble.physicsBody?.isDynamic = true
         bubble.physicsBody?.affectedByGravity = false
         bubble.physicsBody?.allowsRotation = true
@@ -145,13 +152,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bubbleDirectionChoosing = arc4random() % 2
         var bubbleMovementChoosing = Int32(arc4random() % 275)
         if bubbleDirectionChoosing == 0 { bubbleMovementChoosing *= -1 }
-        let bubbleDuration = (arc4random() % 3) + 5
+        let bubbleDuration = (arc4random() % 5) + 5
         let moveBubble = SKAction.moveBy(x: CGFloat(bubbleMovementChoosing), y: self.frame.size.height + self.frame.size.height/2, duration: TimeInterval(bubbleDuration))
         let removeBubble = SKAction.removeFromParent()
         let moveBubbleRepeater = SKAction.repeatForever(SKAction.sequence([moveBubble, removeBubble]))
+        
         bubble.run(moveBubbleRepeater)
-                
-        bubbleObject.addChild(bubble)        
+        
+        bubbleObject.addChild(bubble)
     }
     
     
