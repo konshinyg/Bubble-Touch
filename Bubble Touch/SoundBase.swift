@@ -77,20 +77,17 @@ public class SoundBase {
     
     public func playBackground(filename: String) {
         if !isPlaying {
-            let url = Bundle.main.url(forResource: filename, withExtension: nil)
-            do {
-                playerBackground = try AVAudioPlayer(contentsOf: url!)
-                playerBackground?.numberOfLoops = -1
-                playerBackground?.prepareToPlay()
-                playerBackground?.play()
-                isPlaying = true
-            } catch {
-                print("couldn't play background music")
-                playerBackground = nil
-            }
-        } else {
-            resumeBackground()
-        }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                let url = Bundle.main.url(forResource: filename, withExtension: nil)
+                do {
+                    self.playerBackground = try AVAudioPlayer(contentsOf: url!)
+                    self.playerBackground?.numberOfLoops = -1
+                    self.playerBackground?.prepareToPlay()
+                    self.playerBackground?.play()
+                    self.isPlaying = true
+                } catch { self.playerBackground = nil }
+            })
+        } else { resumeBackground() }
     }
     
     public func pauseBackground() {

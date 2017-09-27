@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func reloadGame(_ sender: UIButton) {
-        scene.run(scene.buttonPressSound)
+        SoundBase.sharedInstance().playSoundEffect(filename: "button_press.wav")
         scene.score = 0
         if let storyboard = storyboard {
             let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
@@ -57,7 +57,10 @@ class GameViewController: UIViewController {
     
     func endGame() {
         finalScoreLabel.text = "score: \(scene.score) points"
-
+        if scene.score > UserDefaults.standard.object(forKey: "highScore") as! Int {
+            UserDefaults.standard.set(scene.score, forKey: "highScore")
+        }
+        SoundBase.sharedInstance().playBackground(filename: "bonja.mp3")
         woodenImage4.isHidden = true
         woodenImage3.isHidden = true
         scoreLabel.isHidden = true
@@ -71,12 +74,12 @@ class GameViewController: UIViewController {
     }
     
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
+            return .portrait
         } else {
             return .all
         }
@@ -84,7 +87,6 @@ class GameViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
     
     override var prefersStatusBarHidden: Bool {

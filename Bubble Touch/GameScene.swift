@@ -42,8 +42,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Sounds
     var bells = SKAction.playSoundFileNamed("bells.wav", waitForCompletion: false)
-    var buttonPressSound = SKAction.playSoundFileNamed("button_press.wav", waitForCompletion: false)
-
 
     override func didMove(to view: SKView) {
         createObjects()
@@ -170,16 +168,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         bubbleObject.addChild(bubble)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

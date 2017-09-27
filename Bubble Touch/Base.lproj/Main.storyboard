@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="60" id="f5F-2h-PB4"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOh-Xp-pZg" userLabel="startButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOh-Xp-pZg" userLabel="startButton">
                                 <rect key="frame" x="140.5" y="313.5" width="94" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="hXh-9K-n1p"/>
@@ -75,11 +75,34 @@
                                     <segue destination="joL-qt-eN3" kind="show" identifier="menuSegue" animates="NO" id="nwu-xZ-MvA"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moi-QH-jBh">
+                                <rect key="frame" x="79" y="97" width="217" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="GWS-1t-Mbg"/>
+                                    <constraint firstAttribute="width" constant="217" id="dTi-d5-sGg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highscore:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETL-Oj-nzq">
+                                <rect key="frame" x="107" y="70" width="161" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="161" id="5zx-jJ-9z5"/>
+                                    <constraint firstAttribute="height" constant="35" id="FP8-C5-d12"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ETL-Oj-nzq" firstAttribute="centerX" secondItem="GYf-fh-zpc" secondAttribute="centerX" id="9aZ-8L-zOf"/>
                             <constraint firstItem="ggt-AD-0pj" firstAttribute="centerX" secondItem="GYf-fh-zpc" secondAttribute="centerX" id="AZf-rz-TZa"/>
                             <constraint firstItem="Tzt-6z-DJo" firstAttribute="leading" secondItem="GYf-fh-zpc" secondAttribute="leading" id="L2X-QY-gg4"/>
+                            <constraint firstItem="moi-QH-jBh" firstAttribute="centerX" secondItem="GYf-fh-zpc" secondAttribute="centerX" id="PYh-PG-034"/>
+                            <constraint firstItem="ETL-Oj-nzq" firstAttribute="top" secondItem="nvE-eL-y2y" secondAttribute="bottom" constant="70" id="Vvw-i9-clv"/>
                             <constraint firstAttribute="trailing" secondItem="Tzt-6z-DJo" secondAttribute="trailing" id="Wj7-Te-YEh"/>
                             <constraint firstItem="nD3-pQ-z50" firstAttribute="top" secondItem="ggt-AD-0pj" secondAttribute="bottom" constant="8" id="WsA-Yh-EXc"/>
                             <constraint firstItem="n3w-2b-RNj" firstAttribute="leading" secondItem="GYf-fh-zpc" secondAttribute="leading" id="Xkk-oQ-0Gu"/>
@@ -88,6 +111,7 @@
                             <constraint firstItem="nD3-pQ-z50" firstAttribute="centerX" secondItem="GYf-fh-zpc" secondAttribute="centerX" id="eXx-km-wRr"/>
                             <constraint firstItem="LOh-Xp-pZg" firstAttribute="centerX" secondItem="ggt-AD-0pj" secondAttribute="centerX" id="f4f-mo-TpH"/>
                             <constraint firstItem="Tzt-6z-DJo" firstAttribute="top" secondItem="nvE-eL-y2y" secondAttribute="bottom" id="fNA-aY-n9w"/>
+                            <constraint firstItem="moi-QH-jBh" firstAttribute="top" secondItem="ETL-Oj-nzq" secondAttribute="bottom" constant="-8" id="fPg-0P-KJP"/>
                             <constraint firstItem="Rg2-Tc-q3p" firstAttribute="top" secondItem="Tzt-6z-DJo" secondAttribute="bottom" id="jsL-YU-wbf"/>
                             <constraint firstAttribute="trailing" secondItem="n3w-2b-RNj" secondAttribute="trailing" id="juu-RA-LwY"/>
                             <constraint firstItem="LOh-Xp-pZg" firstAttribute="centerY" secondItem="ggt-AD-0pj" secondAttribute="centerY" id="mnY-7F-dyj"/>
@@ -99,12 +123,13 @@
                     <navigationItem key="navigationItem" id="KQS-Np-gzp"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="highScoreLabel" destination="moi-QH-jBh" id="16h-WP-QlB"/>
                         <outlet property="menuBackboard" destination="Tzt-6z-DJo" id="CJM-hz-R1D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r61-4g-WRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="16.800000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="15" y="138.75"/>
         </scene>
         <!--Rules View Controller-->
         <scene sceneID="LJD-rA-2Uf">
@@ -279,7 +304,7 @@ red and yellow bubbles: -20 points</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4N-l8-DFI">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4N-l8-DFI">
                                 <rect key="frame" x="150" y="374.5" width="75" height="75"/>
                                 <state key="normal" image="reloadButton.png"/>
                                 <connections>
