@@ -5,13 +5,14 @@ import SpriteKit
 private let soundBaseInstance = SoundBase()
 
 public class SoundBase {
-
+    
     public var player: AVAudioPlayer?
-
+    var isPlaying = false
+    
     public class func sharedInstance() -> SoundBase {
         return soundBaseInstance
     }
-
+    
     let bubbleTouchSound0 = SKAction.playSoundFileNamed("ah2", waitForCompletion: false)
     let bubbleTouchSound1 = SKAction.playSoundFileNamed("burp1", waitForCompletion: false)
     let bubbleTouchSound2 = SKAction.playSoundFileNamed("burp2", waitForCompletion: false)
@@ -57,7 +58,7 @@ public class SoundBase {
     
     var soundsArray = [SKAction]()
     init() {
-    soundsArray = [bubbleTouchSound0, bubbleTouchSound1, bubbleTouchSound2, bubbleTouchSound3, bubbleTouchSound4, bubbleTouchSound5, bubbleTouchSound6, bubbleTouchSound7, bubbleTouchSound8, bubbleTouchSound9, bubbleTouchSound10, bubbleTouchSound11, bubbleTouchSound12, bubbleTouchSound13, bubbleTouchSound14, bubbleTouchSound15, bubbleTouchSound16, bubbleTouchSound17, bubbleTouchSound18, bubbleTouchSound19, bubbleTouchSound20, bubbleTouchSound21, bubbleTouchSound22, bubbleTouchSound23, bubbleTouchSound24, bubbleTouchSound25, bubbleTouchSound26, bubbleTouchSound27, bubbleTouchSound28, bubbleTouchSound29, bubbleTouchSound30, bubbleTouchSound31, bubbleTouchSound32, bubbleTouchSound33, bubbleTouchSound34, bubbleTouchSound35, bubbleTouchSound36, bubbleTouchSound37, bubbleTouchSound38, bubbleTouchSound39, bubbleTouchSound40, bubbleTouchSound41]
+        soundsArray = [bubbleTouchSound0, bubbleTouchSound1, bubbleTouchSound2, bubbleTouchSound3, bubbleTouchSound4, bubbleTouchSound5, bubbleTouchSound6, bubbleTouchSound7, bubbleTouchSound8, bubbleTouchSound9, bubbleTouchSound10, bubbleTouchSound11, bubbleTouchSound12, bubbleTouchSound13, bubbleTouchSound14, bubbleTouchSound15, bubbleTouchSound16, bubbleTouchSound17, bubbleTouchSound18, bubbleTouchSound19, bubbleTouchSound20, bubbleTouchSound21, bubbleTouchSound22, bubbleTouchSound23, bubbleTouchSound24, bubbleTouchSound25, bubbleTouchSound26, bubbleTouchSound27, bubbleTouchSound28, bubbleTouchSound29, bubbleTouchSound30, bubbleTouchSound31, bubbleTouchSound32, bubbleTouchSound33, bubbleTouchSound34, bubbleTouchSound35, bubbleTouchSound36, bubbleTouchSound37, bubbleTouchSound38, bubbleTouchSound39, bubbleTouchSound40, bubbleTouchSound41]
     }
     
     func startPlay(filename: String) {
@@ -73,17 +74,19 @@ public class SoundBase {
     }
     
     func startPlayBackground(filename: String) {
-        let url = Bundle.main.url(forResource: filename, withExtension: nil)
-        do {
-            player = try AVAudioPlayer(contentsOf: url!)
-            player?.numberOfLoops = -1
-            player?.volume = 0.8
-            player?.prepareToPlay()
-            player?.play()
-        } catch {
-            print("couldn't play background music")
-            player = nil
+        if !isPlaying {
+            let url = Bundle.main.url(forResource: filename, withExtension: nil)
+            do {
+                player = try AVAudioPlayer(contentsOf: url!)
+                player?.numberOfLoops = -1
+                player?.volume = 0.8
+                player?.prepareToPlay()
+                player?.play()
+                isPlaying = true
+            } catch {
+                print("couldn't play background music")
+                player = nil
+            }
         }
     }
-
 }

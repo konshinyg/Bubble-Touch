@@ -18,10 +18,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Sprites
     var bg = SKSpriteNode()
     var bubble = SKSpriteNode()
+    var wall_left = SKSpriteNode()
+    var wall_right = SKSpriteNode()
     
     // Textures
     var bgTexture: SKTexture!
     var bubbleTexture: SKTexture!
+    var wallTexture: SKTexture!
     
     // Objects
     var bgObject = SKNode()
@@ -68,7 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.removeAllActions()
         self.removeAllChildren()
-
+        SoundBase.sharedInstance().isPlaying = false
         gameViewControllerBridge.endGame()
     }
     
@@ -101,18 +104,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createWalls() {
-        let wall_left = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 20, height: 667))
-        wall_left.strokeColor = SKColor.white
-        wall_left.fillColor = SKColor.black
-        wall_left.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_left.frame.size.width, height: wall_left.frame.size.height), center: CGPoint(x: 5, y: 333))
+        wallTexture = SKTexture(imageNamed: "panels@2x.png")
+        wall_left = SKSpriteNode(texture: wallTexture)
+        wall_left.size.width = (view?.frame.size.width)!/10
+        wall_left.size.height = (view?.frame.size.height)!
+        wall_left.position = CGPoint(x: 0, y: (view?.frame.size.height)!/2)
+        wall_left.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_left.size.width, height: wall_left.size.height))
         wall_left.physicsBody?.isDynamic = false
         wall_left.physicsBody?.categoryBitMask = wallsGroup
         wallsObject.addChild(wall_left)
         
-        let wall_right = SKShapeNode(rect: CGRect(x: 355, y: 0, width: 20, height: 667))
-        wall_right.strokeColor = SKColor.white
-        wall_right.fillColor = SKColor.black
-        wall_right.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_right.frame.size.width, height: wall_right.frame.size.height), center: CGPoint(x: 370, y: 333))
+        wall_right = SKSpriteNode(texture: wallTexture)
+        wall_right.size.width = (view?.frame.size.width)!/10
+        wall_right.size.height = (view?.frame.size.height)!
+        wall_right.position = CGPoint(x: (view?.frame.size.width)!, y: (view?.frame.size.height)!/2)
+        wall_right.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall_right.size.width, height: wall_right.size.height))
         wall_right.physicsBody?.categoryBitMask = wallsGroup
         wall_right.physicsBody?.isDynamic = false
         wallsObject.addChild(wall_right)
@@ -120,21 +126,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createBubble() {
         // color choosing
-//        let bubbleTextureArray = ["bubble_blue.png", "bubble_gray.png", "bubble_green.png", "bubble_purple.png", "bubble_red.png", "bubble_yellow.png"]
         let bubbleSuperTextureArray = ["bubble_super_red.png", "bubble_super_yellow.png", "bubble_super_green.png", "bubble_super_purple.png", "bubble_super_cian.png", "bubble_super_blue.png", "bubble_super_pink.png"]
         let bubbleColorChoosing = arc4random() % 7
         let bubbleImage = String(describing: bubbleSuperTextureArray[Int(bubbleColorChoosing)])
         bubbleTexture = SKTexture(imageNamed: bubbleImage)
         bubble = SKSpriteNode(texture: bubbleTexture)
         switch bubbleColorChoosing {
-//        case 0 : bubble.name = "blue"
-//        case 1 : bubble.name = "gray"
-//        case 2 : bubble.name = "green"
-//        case 3 : bubble.name = "purple"
-//        case 4 : bubble.name = "red"
-//        case 5 : bubble.name = "yellow"
-//        default : break
-
         case 0 : bubble.name = "red"
         case 1 : bubble.name = "yellow"
         case 2 : bubble.name = "green"
@@ -149,8 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bubble.size.width = sizeRand
         bubble.size.height = sizeRand
         let bubblePositionChoosing = arc4random() % 275
-        let bubbleCenter = CGPoint(x: 50 + CGFloat(bubblePositionChoosing), y: -self.frame.size.height/6)
-        bubble.position = bubbleCenter
+        bubble.position = CGPoint(x: sizeRand/2 + CGFloat(bubblePositionChoosing), y: -self.frame.size.height/6)
         
         // physics
         bubble.physicsBody = SKPhysicsBody(circleOfRadius: sizeRand/2)

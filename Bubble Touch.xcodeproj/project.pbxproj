@@ -16,12 +16,8 @@
 		132262BC1F79161E00B680D4 /* pu5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 132262B21F79161E00B680D4 /* pu5.wav */; };
 		132262BD1F79161E00B680D4 /* pu6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 132262B31F79161E00B680D4 /* pu6.wav */; };
 		132262BE1F79161E00B680D4 /* pu7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 132262B41F79161E00B680D4 /* pu7.wav */; };
+		136BBFED1F7B1FB9003A7BE5 /* panels@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 136BBFEC1F7B1FB9003A7BE5 /* panels@2x.png */; };
 		137AC8EE1F7A6F9B0022ABC1 /* backboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E01F7A6F9B0022ABC1 /* backboard.jpg */; };
-		137AC8EF1F7A6F9B0022ABC1 /* bubble_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E11F7A6F9B0022ABC1 /* bubble_blue.png */; };
-		137AC8F01F7A6F9B0022ABC1 /* bubble_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E21F7A6F9B0022ABC1 /* bubble_gray.png */; };
-		137AC8F11F7A6F9B0022ABC1 /* bubble_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E31F7A6F9B0022ABC1 /* bubble_green.png */; };
-		137AC8F21F7A6F9B0022ABC1 /* bubble_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E41F7A6F9B0022ABC1 /* bubble_purple.png */; };
-		137AC8F31F7A6F9B0022ABC1 /* bubble_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E51F7A6F9B0022ABC1 /* bubble_red.png */; };
 		137AC8F41F7A6F9B0022ABC1 /* bubble_super_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E61F7A6F9B0022ABC1 /* bubble_super_blue.png */; };
 		137AC8F51F7A6F9B0022ABC1 /* bubble_super_cian.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E71F7A6F9B0022ABC1 /* bubble_super_cian.png */; };
 		137AC8F61F7A6F9B0022ABC1 /* bubble_super_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8E81F7A6F9B0022ABC1 /* bubble_super_green.png */; };
@@ -29,7 +25,6 @@
 		137AC8F81F7A6F9B0022ABC1 /* bubble_super_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8EA1F7A6F9B0022ABC1 /* bubble_super_purple.png */; };
 		137AC8F91F7A6F9B0022ABC1 /* bubble_super_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8EB1F7A6F9B0022ABC1 /* bubble_super_red.png */; };
 		137AC8FA1F7A6F9B0022ABC1 /* bubble_super_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8EC1F7A6F9B0022ABC1 /* bubble_super_yellow.png */; };
-		137AC8FB1F7A6F9B0022ABC1 /* bubble_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8ED1F7A6F9B0022ABC1 /* bubble_yellow.png */; };
 		137AC8FD1F7A72C30022ABC1 /* button_press.wav in Resources */ = {isa = PBXBuildFile; fileRef = 137AC8FC1F7A72C30022ABC1 /* button_press.wav */; };
 		137AC9041F7A76560022ABC1 /* ah2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 137AC9021F7A76560022ABC1 /* ah2.wav */; };
 		137AC96F1F7A7F010022ABC1 /* A_BOING.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 137AC94C1F7A7F010022ABC1 /* A_BOING.mp3 */; };
@@ -67,7 +62,6 @@
 		137AC9AD1F7AC1BC0022ABC1 /* pu15.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 137AC9A21F7AC1BC0022ABC1 /* pu15.mp3 */; };
 		137AC9AF1F7ACA740022ABC1 /* woodenBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC9AE1F7ACA740022ABC1 /* woodenBack.png */; };
 		137AC9B11F7ACCC70022ABC1 /* reloadButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 137AC9B01F7ACCC70022ABC1 /* reloadButton.png */; };
-		13A1D5631F7B003E000A3CDF /* panels@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13A1D5621F7B003E000A3CDF /* panels@2x.png */; };
 		13A1D5671F7B050A000A3CDF /* burp1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13A1D5641F7B050A000A3CDF /* burp1.mp3 */; };
 		13A1D5681F7B050A000A3CDF /* burp2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13A1D5651F7B050A000A3CDF /* burp2.mp3 */; };
 		13A1D5691F7B050A000A3CDF /* burp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13A1D5661F7B050A000A3CDF /* burp3.mp3 */; };
@@ -94,12 +88,8 @@
 		132262B21F79161E00B680D4 /* pu5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pu5.wav; sourceTree = "<group>"; };
 		132262B31F79161E00B680D4 /* pu6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pu6.wav; sourceTree = "<group>"; };
 		132262B41F79161E00B680D4 /* pu7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pu7.wav; sourceTree = "<group>"; };
+		136BBFEC1F7B1FB9003A7BE5 /* panels@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panels@2x.png"; sourceTree = "<group>"; };
 		137AC8E01F7A6F9B0022ABC1 /* backboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backboard.jpg; sourceTree = "<group>"; };
-		137AC8E11F7A6F9B0022ABC1 /* bubble_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_blue.png; sourceTree = "<group>"; };
-		137AC8E21F7A6F9B0022ABC1 /* bubble_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_gray.png; sourceTree = "<group>"; };
-		137AC8E31F7A6F9B0022ABC1 /* bubble_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_green.png; sourceTree = "<group>"; };
-		137AC8E41F7A6F9B0022ABC1 /* bubble_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_purple.png; sourceTree = "<group>"; };
-		137AC8E51F7A6F9B0022ABC1 /* bubble_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_red.png; sourceTree = "<group>"; };
 		137AC8E61F7A6F9B0022ABC1 /* bubble_super_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_super_blue.png; sourceTree = "<group>"; };
 		137AC8E71F7A6F9B0022ABC1 /* bubble_super_cian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_super_cian.png; sourceTree = "<group>"; };
 		137AC8E81F7A6F9B0022ABC1 /* bubble_super_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_super_green.png; sourceTree = "<group>"; };
@@ -107,7 +97,6 @@
 		137AC8EA1F7A6F9B0022ABC1 /* bubble_super_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_super_purple.png; sourceTree = "<group>"; };
 		137AC8EB1F7A6F9B0022ABC1 /* bubble_super_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_super_red.png; sourceTree = "<group>"; };
 		137AC8EC1F7A6F9B0022ABC1 /* bubble_super_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_super_yellow.png; sourceTree = "<group>"; };
-		137AC8ED1F7A6F9B0022ABC1 /* bubble_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_yellow.png; sourceTree = "<group>"; };
 		137AC8FC1F7A72C30022ABC1 /* button_press.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_press.wav; sourceTree = "<group>"; };
 		137AC9021F7A76560022ABC1 /* ah2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ah2.wav; sourceTree = "<group>"; };
 		137AC94C1F7A7F010022ABC1 /* A_BOING.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A_BOING.mp3; sourceTree = "<group>"; };
@@ -145,7 +134,6 @@
 		137AC9A21F7AC1BC0022ABC1 /* pu15.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pu15.mp3; sourceTree = "<group>"; };
 		137AC9AE1F7ACA740022ABC1 /* woodenBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodenBack.png; sourceTree = "<group>"; };
 		137AC9B01F7ACCC70022ABC1 /* reloadButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButton.png; sourceTree = "<group>"; };
-		13A1D5621F7B003E000A3CDF /* panels@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panels@2x.png"; sourceTree = "<group>"; };
 		13A1D5641F7B050A000A3CDF /* burp1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = burp1.mp3; sourceTree = "<group>"; };
 		13A1D5651F7B050A000A3CDF /* burp2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = burp2.mp3; sourceTree = "<group>"; };
 		13A1D5661F7B050A000A3CDF /* burp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = burp3.mp3; sourceTree = "<group>"; };
@@ -277,15 +265,10 @@
 			isa = PBXGroup;
 			children = (
 				13F52CD31F7A5D1000B0BCA8 /* startButton.png */,
-				13A1D5621F7B003E000A3CDF /* panels@2x.png */,
+				136BBFEC1F7B1FB9003A7BE5 /* panels@2x.png */,
 				137AC9AE1F7ACA740022ABC1 /* woodenBack.png */,
 				137AC9B01F7ACCC70022ABC1 /* reloadButton.png */,
 				137AC8E01F7A6F9B0022ABC1 /* backboard.jpg */,
-				137AC8E11F7A6F9B0022ABC1 /* bubble_blue.png */,
-				137AC8E21F7A6F9B0022ABC1 /* bubble_gray.png */,
-				137AC8E31F7A6F9B0022ABC1 /* bubble_green.png */,
-				137AC8E41F7A6F9B0022ABC1 /* bubble_purple.png */,
-				137AC8E51F7A6F9B0022ABC1 /* bubble_red.png */,
 				137AC8E61F7A6F9B0022ABC1 /* bubble_super_blue.png */,
 				137AC8E71F7A6F9B0022ABC1 /* bubble_super_cian.png */,
 				137AC8E81F7A6F9B0022ABC1 /* bubble_super_green.png */,
@@ -293,7 +276,6 @@
 				137AC8EA1F7A6F9B0022ABC1 /* bubble_super_purple.png */,
 				137AC8EB1F7A6F9B0022ABC1 /* bubble_super_red.png */,
 				137AC8EC1F7A6F9B0022ABC1 /* bubble_super_yellow.png */,
-				137AC8ED1F7A6F9B0022ABC1 /* bubble_yellow.png */,
 			);
 			name = pics;
 			sourceTree = "<group>";
@@ -359,7 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				132262BB1F79161E00B680D4 /* pu4.wav in Resources */,
-				13A1D5631F7B003E000A3CDF /* panels@2x.png in Resources */,
+				136BBFED1F7B1FB9003A7BE5 /* panels@2x.png in Resources */,
 				137AC9771F7A7F010022ABC1 /* BOING2.mp3 in Resources */,
 				137AC9AB1F7AC1BC0022ABC1 /* pu10.mp3 in Resources */,
 				137AC8F71F7A6F9B0022ABC1 /* bubble_super_pink.png in Resources */,
@@ -369,7 +351,6 @@
 				137AC97B1F7A7F010022ABC1 /* BULLFROG.mp3 in Resources */,
 				137AC9801F7A7F010022ABC1 /* GFY_HAHA.mp3 in Resources */,
 				137AC9AC1F7AC1BC0022ABC1 /* pu11.mp3 in Resources */,
-				137AC8FB1F7A6F9B0022ABC1 /* bubble_yellow.png in Resources */,
 				137AC9831F7A7F010022ABC1 /* NASTY_CO.mp3 in Resources */,
 				137AC8F81F7A6F9B0022ABC1 /* bubble_super_purple.png in Resources */,
 				13AC9DFA1F757D1C0010D677 /* Main.storyboard in Resources */,
@@ -384,10 +365,8 @@
 				137AC9881F7A7F010022ABC1 /* PLASMAEX.mp3 in Resources */,
 				137AC9851F7A7F010022ABC1 /* OORR.mp3 in Resources */,
 				13AC9DFC1F757D1C0010D677 /* Assets.xcassets in Resources */,
-				137AC8F31F7A6F9B0022ABC1 /* bubble_red.png in Resources */,
 				137AC9A31F7AC1BC0022ABC1 /* pu14.mp3 in Resources */,
 				137AC9781F7A7F010022ABC1 /* BOO.mp3 in Resources */,
-				137AC8F01F7A6F9B0022ABC1 /* bubble_gray.png in Resources */,
 				137AC9AF1F7ACA740022ABC1 /* woodenBack.png in Resources */,
 				137AC98D1F7A7F010022ABC1 /* SIN_LAFF.mp3 in Resources */,
 				137AC9A51F7AC1BC0022ABC1 /* pu9.mp3 in Resources */,
@@ -395,7 +374,6 @@
 				137AC8F61F7A6F9B0022ABC1 /* bubble_super_green.png in Resources */,
 				137AC8EE1F7A6F9B0022ABC1 /* backboard.jpg in Resources */,
 				13A1D5681F7B050A000A3CDF /* burp2.mp3 in Resources */,
-				137AC8EF1F7A6F9B0022ABC1 /* bubble_blue.png in Resources */,
 				137AC8F41F7A6F9B0022ABC1 /* bubble_super_blue.png in Resources */,
 				137AC9951F7A84EE0022ABC1 /* BAAA.mp3 in Resources */,
 				137AC9971F7ABC890022ABC1 /* bonja.mp3 in Resources */,
@@ -408,7 +386,6 @@
 				137AC98A1F7A7F010022ABC1 /* SH_GARGL.mp3 in Resources */,
 				132262B91F79161E00B680D4 /* pu2.wav in Resources */,
 				13AC9DF31F757D1C0010D677 /* Actions.sks in Resources */,
-				137AC8F11F7A6F9B0022ABC1 /* bubble_green.png in Resources */,
 				137AC8FD1F7A72C30022ABC1 /* button_press.wav in Resources */,
 				132262BA1F79161E00B680D4 /* pu3.wav in Resources */,
 				137AC97A1F7A7F010022ABC1 /* BROKEN_D.mp3 in Resources */,
@@ -423,7 +400,6 @@
 				137AC97F1F7A7F010022ABC1 /* DOG_BARK.mp3 in Resources */,
 				13A1D5691F7B050A000A3CDF /* burp3.mp3 in Resources */,
 				137AC9AA1F7AC1BC0022ABC1 /* burp6.mp3 in Resources */,
-				137AC8F21F7A6F9B0022ABC1 /* bubble_purple.png in Resources */,
 				137AC8F91F7A6F9B0022ABC1 /* bubble_super_red.png in Resources */,
 				137AC8FA1F7A6F9B0022ABC1 /* bubble_super_yellow.png in Resources */,
 			);
