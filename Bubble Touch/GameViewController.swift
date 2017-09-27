@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
         scene.run(scene.buttonPressSound)
         scene.score = 0
         if let storyboard = storyboard {
-            let menuViewController = storyboard.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
+            let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
             navigationController?.pushViewController(menuViewController, animated: false)
         }
     }
