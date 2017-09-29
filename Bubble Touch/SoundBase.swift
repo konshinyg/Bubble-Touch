@@ -14,7 +14,7 @@ public class SoundBase {
         return soundBaseInstance
     }
     
-    let bubbleTouchSound0 = SKAction.playSoundFileNamed("ah2", waitForCompletion: false)
+    let bubbleTouchSound0 = SKAction.playSoundFileNamed("ah", waitForCompletion: false)
     let bubbleTouchSound1 = SKAction.playSoundFileNamed("burp1", waitForCompletion: false)
     let bubbleTouchSound2 = SKAction.playSoundFileNamed("burp2", waitForCompletion: false)
     let bubbleTouchSound3 = SKAction.playSoundFileNamed("burp3", waitForCompletion: false)
@@ -77,16 +77,14 @@ public class SoundBase {
     
     public func playBackground(filename: String) {
         if !isPlaying {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                let url = Bundle.main.url(forResource: filename, withExtension: nil)
-                do {
-                    self.playerBackground = try AVAudioPlayer(contentsOf: url!)
-                    self.playerBackground?.numberOfLoops = -1
-                    self.playerBackground?.prepareToPlay()
-                    self.playerBackground?.play()
-                    self.isPlaying = true
-                } catch { self.playerBackground = nil }
-            })
+            let url = Bundle.main.url(forResource: filename, withExtension: nil)
+            do {
+                playerBackground = try AVAudioPlayer(contentsOf: url!)
+                playerBackground?.numberOfLoops = -1
+                playerBackground?.prepareToPlay()
+                playerBackground?.play()
+                isPlaying = true
+            } catch { playerBackground = nil }
         } else { resumeBackground() }
     }
     

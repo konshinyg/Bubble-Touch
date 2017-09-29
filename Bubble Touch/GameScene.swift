@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bgTexture: SKTexture!
     var bubbleTexture: SKTexture!
     var wallTexture: SKTexture!
+    var bubbleBurstTextureArray = [SKTexture]()
     
     // Objects
     var bgObject = SKNode()
@@ -42,13 +43,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Sounds
     var bells = SKAction.playSoundFileNamed("bells.wav", waitForCompletion: false)
-
+    
     override func didMove(to view: SKView) {
         createObjects()
         self.physicsWorld.contactDelegate = self
         createGame()
+        if SoundBase.sharedInstance().isPlaying {
+            SoundBase.sharedInstance().pauseBackground()
+        }
     }
-        
+    
     func createObjects() {
         self.addChild(bgObject)
         self.addChild(bubbleObject)
@@ -66,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bubbleTimer.invalidate()
         gameTimer.invalidate()
         gameTimerUpdater.invalidate()
-
+        
         self.removeAllActions()
         self.removeAllChildren()
         SoundBase.sharedInstance().isPlaying = false
@@ -124,8 +128,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createBubble() {
         // color choosing
-        let bubbleSuperTextureArray = ["bubble_super_red.png", "bubble_super_yellow.png", "bubble_super_green.png", "bubble_super_purple.png", "bubble_super_cian.png", "bubble_super_blue.png", "bubble_super_pink.png"]
-        let bubbleColorChoosing = arc4random() % 7
+        let bubbleSuperTextureArray = ["bubble_super_red.png", "bubble_super_yellow.png", "bubble_super_green.png", "bubble_super_purple.png", "bubble_super_cian.png", "bubble_super_blue.png", "bubble_super_pink.png", "bubble_super_red.png", "bubble_super_yellow.png"]
+        let bubbleColorChoosing = arc4random() % 9
         let bubbleImage = String(describing: bubbleSuperTextureArray[Int(bubbleColorChoosing)])
         bubbleTexture = SKTexture(imageNamed: bubbleImage)
         bubble = SKSpriteNode(texture: bubbleTexture)
@@ -137,8 +141,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case 4 : bubble.name = "cian"
         case 5 : bubble.name = "blue"
         case 6 : bubble.name = "pink"
+        case 7 : bubble.name = "red"
+        case 8 : bubble.name = "yellow"
         default : break
         }
+        
         // size & position choosing
         let sizeRand = CGFloat(UInt32(50) + arc4random() % 25)
         bubble.size.width = sizeRand

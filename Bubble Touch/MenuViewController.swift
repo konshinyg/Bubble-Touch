@@ -6,14 +6,13 @@ import SpriteKit
 class MenuViewController: UIViewController {
     
     @IBOutlet weak var highScoreLabel: UILabel!
-    @IBOutlet weak var menuBackboard: UIImageView!
+    @IBOutlet weak var startButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if UserDefaults.standard.object(forKey: "highScore") != nil {
             let highScore = UserDefaults.standard.object(forKey: "highScore") as! Int
-                highScoreLabel.text = "\(highScore) points"
+            highScoreLabel.text = "\(highScore) points"
         } else {
             UserDefaults.standard.set(0, forKey: "highScore")
             highScoreLabel.text = "0 points"
@@ -22,6 +21,8 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
+        sender.setTitleColor(SKColor.gray, for: .selected)
+
         SoundBase.sharedInstance().playSoundEffect(filename: "button_press.wav")
         SoundBase.sharedInstance().pauseBackground()
         if let storyboard = storyboard {

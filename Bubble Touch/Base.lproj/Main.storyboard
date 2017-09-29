@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="60" id="f5F-2h-PB4"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOh-Xp-pZg" userLabel="startButton">
+                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOh-Xp-pZg" userLabel="startButton">
                                 <rect key="frame" x="140.5" y="313.5" width="94" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="hXh-9K-n1p"/>
@@ -124,7 +124,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="highScoreLabel" destination="moi-QH-jBh" id="16h-WP-QlB"/>
-                        <outlet property="menuBackboard" destination="Tzt-6z-DJo" id="CJM-hz-R1D"/>
+                        <outlet property="startButton" destination="LOh-Xp-pZg" id="WZV-e7-2Xl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r61-4g-WRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
