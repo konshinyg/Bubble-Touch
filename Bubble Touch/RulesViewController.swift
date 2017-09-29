@@ -15,7 +15,7 @@ class RulesViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        SoundBase.sharedInstance().playSoundEffect(filename: "button_press.wav")
+        SoundBase.sharedInstance.playSoundEffect(filename: "button_press.wav")
     }
         
     override var prefersStatusBarHidden: Bool {

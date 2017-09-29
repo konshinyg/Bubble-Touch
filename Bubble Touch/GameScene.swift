@@ -48,8 +48,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createObjects()
         self.physicsWorld.contactDelegate = self
         createGame()
-        if SoundBase.sharedInstance().isPlaying {
-            SoundBase.sharedInstance().pauseBackground()
+        if SoundBase.sharedInstance.isPlaying {
+            SoundBase.sharedInstance.pauseBackground()
         }
     }
     
@@ -73,7 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.removeAllActions()
         self.removeAllChildren()
-        SoundBase.sharedInstance().isPlaying = false
+        SoundBase.sharedInstance.isPlaying = false
         gameViewControllerBridge.endGame()
     }
     

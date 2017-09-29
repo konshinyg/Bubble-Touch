@@ -17,14 +17,14 @@ class MenuViewController: UIViewController {
             UserDefaults.standard.set(0, forKey: "highScore")
             highScoreLabel.text = "0 points"
         }
-        SoundBase.sharedInstance().playBackground(filename: "bonja.mp3")
+        SoundBase.sharedInstance.playBackground(filename: "bonja.mp3")
     }
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
         sender.setTitleColor(SKColor.gray, for: .selected)
 
-        SoundBase.sharedInstance().playSoundEffect(filename: "button_press.wav")
-        SoundBase.sharedInstance().pauseBackground()
+        SoundBase.sharedInstance.playSoundEffect(filename: "button_press.wav")
+        SoundBase.sharedInstance.pauseBackground()
         if let storyboard = storyboard {
             let gameViewController = storyboard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
             navigationController?.pushViewController(gameViewController, animated: false)
@@ -32,7 +32,7 @@ class MenuViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        SoundBase.sharedInstance().playSoundEffect(filename: "button_press.wav")
+        SoundBase.sharedInstance.playSoundEffect(filename: "button_press.wav")
     }
     
     override var prefersStatusBarHidden: Bool {

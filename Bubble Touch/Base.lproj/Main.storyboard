@@ -25,14 +25,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backboard.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Tzt-6z-DJo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <visualEffectView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3w-2b-RNj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Jty-7U-Jen">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodenBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="ggt-AD-0pj">
                                 <rect key="frame" x="107.5" y="303.5" width="160" height="60"/>
                                 <constraints>
@@ -40,7 +32,7 @@
                                     <constraint firstAttribute="height" constant="60" id="f5F-2h-PB4"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOh-Xp-pZg" userLabel="startButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOh-Xp-pZg" userLabel="startButton">
                                 <rect key="frame" x="140.5" y="313.5" width="94" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="hXh-9K-n1p"/>
@@ -105,18 +97,14 @@
                             <constraint firstItem="ETL-Oj-nzq" firstAttribute="top" secondItem="nvE-eL-y2y" secondAttribute="bottom" constant="70" id="Vvw-i9-clv"/>
                             <constraint firstAttribute="trailing" secondItem="Tzt-6z-DJo" secondAttribute="trailing" id="Wj7-Te-YEh"/>
                             <constraint firstItem="nD3-pQ-z50" firstAttribute="top" secondItem="ggt-AD-0pj" secondAttribute="bottom" constant="8" id="WsA-Yh-EXc"/>
-                            <constraint firstItem="n3w-2b-RNj" firstAttribute="leading" secondItem="GYf-fh-zpc" secondAttribute="leading" id="Xkk-oQ-0Gu"/>
-                            <constraint firstItem="Rg2-Tc-q3p" firstAttribute="top" secondItem="n3w-2b-RNj" secondAttribute="bottom" id="bQS-1O-9f6"/>
                             <constraint firstItem="ggt-AD-0pj" firstAttribute="centerY" secondItem="GYf-fh-zpc" secondAttribute="centerY" id="dOw-8r-3m2"/>
                             <constraint firstItem="nD3-pQ-z50" firstAttribute="centerX" secondItem="GYf-fh-zpc" secondAttribute="centerX" id="eXx-km-wRr"/>
                             <constraint firstItem="LOh-Xp-pZg" firstAttribute="centerX" secondItem="ggt-AD-0pj" secondAttribute="centerX" id="f4f-mo-TpH"/>
                             <constraint firstItem="Tzt-6z-DJo" firstAttribute="top" secondItem="nvE-eL-y2y" secondAttribute="bottom" id="fNA-aY-n9w"/>
                             <constraint firstItem="moi-QH-jBh" firstAttribute="top" secondItem="ETL-Oj-nzq" secondAttribute="bottom" constant="-8" id="fPg-0P-KJP"/>
                             <constraint firstItem="Rg2-Tc-q3p" firstAttribute="top" secondItem="Tzt-6z-DJo" secondAttribute="bottom" id="jsL-YU-wbf"/>
-                            <constraint firstAttribute="trailing" secondItem="n3w-2b-RNj" secondAttribute="trailing" id="juu-RA-LwY"/>
                             <constraint firstItem="LOh-Xp-pZg" firstAttribute="centerY" secondItem="ggt-AD-0pj" secondAttribute="centerY" id="mnY-7F-dyj"/>
                             <constraint firstItem="EeY-9C-E0e" firstAttribute="centerY" secondItem="nD3-pQ-z50" secondAttribute="centerY" id="nRz-Ta-ZB5"/>
-                            <constraint firstItem="n3w-2b-RNj" firstAttribute="top" secondItem="nvE-eL-y2y" secondAttribute="bottom" id="nV3-oh-0Yv"/>
                             <constraint firstItem="EeY-9C-E0e" firstAttribute="centerX" secondItem="nD3-pQ-z50" secondAttribute="centerX" id="u4J-hZ-Uec"/>
                         </constraints>
                     </view>
@@ -129,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r61-4g-WRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15" y="138.75"/>
+            <point key="canvasLocation" x="14.5" y="138.5"/>
         </scene>
         <!--Rules View Controller-->
         <scene sceneID="LJD-rA-2Uf">
@@ -146,15 +134,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backboard.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Sk8-Tu-XHz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <visualEffectView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krd-uf-zaj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="kTY-DF-wHd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCq-Gk-xtI">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HCq-Gk-xtI">
                                 <rect key="frame" x="29" y="37" width="317" height="421"/>
                                 <string key="text">Gain points by bursting bubbles within 1 minute
 
@@ -193,16 +173,12 @@ red and yellow bubbles: -20 points</string>
                             <constraint firstItem="iLh-Lv-YgF" firstAttribute="centerX" secondItem="DDq-2z-iyh" secondAttribute="centerX" id="28h-pT-6lQ"/>
                             <constraint firstItem="DdT-nj-X9s" firstAttribute="top" secondItem="iLh-Lv-YgF" secondAttribute="bottom" constant="115" id="7Xh-FS-mbK"/>
                             <constraint firstItem="HCq-Gk-xtI" firstAttribute="leading" secondItem="DDq-2z-iyh" secondAttribute="leadingMargin" constant="13" id="9hD-OR-8rV"/>
-                            <constraint firstAttribute="trailing" secondItem="Krd-uf-zaj" secondAttribute="trailing" id="KEk-ef-yNI"/>
-                            <constraint firstItem="DdT-nj-X9s" firstAttribute="top" secondItem="Krd-uf-zaj" secondAttribute="bottom" id="Kvj-bP-Nj7"/>
                             <constraint firstItem="HCq-Gk-xtI" firstAttribute="top" secondItem="kZc-Ey-9GG" secondAttribute="bottom" constant="37" id="Oxs-pd-Usv"/>
                             <constraint firstItem="DdT-nj-X9s" firstAttribute="top" secondItem="Sk8-Tu-XHz" secondAttribute="bottom" id="Wcl-M6-bDB"/>
                             <constraint firstAttribute="trailing" secondItem="Sk8-Tu-XHz" secondAttribute="trailing" id="X2d-5f-Kjl"/>
                             <constraint firstItem="Sk8-Tu-XHz" firstAttribute="top" secondItem="DDq-2z-iyh" secondAttribute="top" id="XQt-PI-wPA"/>
                             <constraint firstItem="HCq-Gk-xtI" firstAttribute="centerX" secondItem="Sk8-Tu-XHz" secondAttribute="centerX" id="aCK-CG-fYe"/>
-                            <constraint firstItem="Krd-uf-zaj" firstAttribute="leading" secondItem="DDq-2z-iyh" secondAttribute="leading" id="ehJ-8R-VAC"/>
                             <constraint firstItem="dEM-Fw-4Wl" firstAttribute="centerX" secondItem="iLh-Lv-YgF" secondAttribute="centerX" id="j11-RT-MvC"/>
-                            <constraint firstItem="Krd-uf-zaj" firstAttribute="top" secondItem="kZc-Ey-9GG" secondAttribute="bottom" id="m0a-lE-bZY"/>
                             <constraint firstItem="dEM-Fw-4Wl" firstAttribute="centerY" secondItem="iLh-Lv-YgF" secondAttribute="centerY" id="oes-to-apM"/>
                             <constraint firstItem="DdT-nj-X9s" firstAttribute="top" secondItem="HCq-Gk-xtI" secondAttribute="bottom" constant="209" id="owO-mZ-lkK"/>
                         </constraints>
@@ -229,14 +205,6 @@ red and yellow bubbles: -20 points</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backboard.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RNM-9c-rPg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <visualEffectView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4Q-70-oA9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qdP-4x-ZRq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodenBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="SsD-gN-Bbg">
                                 <rect key="frame" x="64" y="300.5" width="247" height="66"/>
                                 <constraints>
@@ -304,7 +272,7 @@ red and yellow bubbles: -20 points</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4N-l8-DFI">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4N-l8-DFI">
                                 <rect key="frame" x="150" y="374.5" width="75" height="75"/>
                                 <state key="normal" image="reloadButton.png"/>
                                 <connections>
@@ -323,23 +291,19 @@ red and yellow bubbles: -20 points</string>
                             <constraint firstItem="c4C-1J-e2y" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailingMargin" constant="-12" id="Kgm-2l-a8W"/>
                             <constraint firstItem="Vpc-Tk-kbA" firstAttribute="top" secondItem="d7A-V0-pS2" secondAttribute="bottom" constant="-45" id="MWf-yq-Qou"/>
                             <constraint firstItem="RNM-9c-rPg" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="PTR-q1-bL7"/>
-                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="e4Q-70-oA9" secondAttribute="bottom" id="PuB-z0-LgJ"/>
                             <constraint firstItem="r4N-l8-DFI" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="RfT-hN-Vlr"/>
                             <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="c4C-1J-e2y" secondAttribute="bottom" constant="20" id="Ugo-66-u53"/>
                             <constraint firstItem="d7A-V0-pS2" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leadingMargin" constant="10" id="XnJ-Yg-KhP"/>
                             <constraint firstItem="JjR-uY-TPS" firstAttribute="centerY" secondItem="dq1-6J-K8j" secondAttribute="centerY" id="Z48-fh-By1"/>
-                            <constraint firstItem="e4Q-70-oA9" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" id="c4d-gs-bzW"/>
                             <constraint firstItem="gNl-26-sQv" firstAttribute="centerX" secondItem="SsD-gN-Bbg" secondAttribute="centerX" id="cJU-br-tWm"/>
                             <constraint firstItem="aMN-0G-1Lj" firstAttribute="leading" secondItem="c4C-1J-e2y" secondAttribute="trailing" constant="-100" id="cyD-5A-7gi"/>
                             <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="RNM-9c-rPg" secondAttribute="bottom" id="kVE-Zo-Brr"/>
                             <constraint firstItem="RNM-9c-rPg" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="m5U-fT-z9w"/>
                             <constraint firstItem="SsD-gN-Bbg" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="nLH-Yb-G6c"/>
-                            <constraint firstItem="e4Q-70-oA9" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="o93-L6-rhu"/>
                             <constraint firstItem="dq1-6J-K8j" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="qCf-Lz-F4d"/>
                             <constraint firstAttribute="trailing" secondItem="RNM-9c-rPg" secondAttribute="trailing" id="qh7-iK-bPn"/>
                             <constraint firstItem="gNl-26-sQv" firstAttribute="centerY" secondItem="SsD-gN-Bbg" secondAttribute="centerY" id="rWb-26-Kbt"/>
                             <constraint firstItem="RNM-9c-rPg" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="t1Q-DU-nuX"/>
-                            <constraint firstAttribute="trailing" secondItem="e4Q-70-oA9" secondAttribute="trailing" id="tPM-il-pvt"/>
                             <constraint firstItem="d7A-V0-pS2" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="10" id="tQh-Lm-6zA"/>
                             <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="RNM-9c-rPg" secondAttribute="bottom" id="uDY-fK-H33"/>
                             <constraint firstItem="RNM-9c-rPg" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="wsx-n1-KFp"/>
@@ -394,6 +358,6 @@ red and yellow bubbles: -20 points</string>
         <image name="woodenBack.png" width="500" height="169"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EHt-61-Ysj"/>
+        <segue reference="iHJ-bn-d4u"/>
     </inferredMetricsTieBreakers>
 </document>

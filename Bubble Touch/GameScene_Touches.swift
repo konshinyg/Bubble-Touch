@@ -11,7 +11,7 @@ extension GameScene {
                 viewTouchLocation = touch.location(in: bubbleObject)
                 if currentBubble.contains(viewTouchLocation) {
                     let takeSound = arc4random() % 42
-                    run(SoundBase.sharedInstance().soundsArray[Int(takeSound)])
+                    run(SoundBase.sharedInstance.soundsArray[Int(takeSound)])
                     if currentBubble.name == "blue" {
                         bubbleBurstTextureArray = [SKTexture(imageNamed: "blueBubbleBurst1.png"), SKTexture(imageNamed: "blueBubbleBurst2.png"), SKTexture(imageNamed: "blueBubbleBurst3.png"), SKTexture(imageNamed: "blueBubbleBurst4.png"), SKTexture(imageNamed: "blueBubbleBurst5.png"), SKTexture(imageNamed: "blueBubbleBurst6.png")]
                         score += 10

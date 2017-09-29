@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func reloadGame(_ sender: UIButton) {
-        SoundBase.sharedInstance().playSoundEffect(filename: "button_press.wav")
+        SoundBase.sharedInstance.playSoundEffect(filename: "button_press.wav")
         scene.score = 0
         if let storyboard = storyboard {
             let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
@@ -60,7 +60,7 @@ class GameViewController: UIViewController {
         if scene.score > UserDefaults.standard.object(forKey: "highScore") as! Int {
             UserDefaults.standard.set(scene.score, forKey: "highScore")
         }
-        SoundBase.sharedInstance().playBackground(filename: "bonja.mp3")
+        SoundBase.sharedInstance.playBackground(filename: "bonja.mp3")
         woodenImage4.isHidden = true
         woodenImage3.isHidden = true
         scoreLabel.isHidden = true

@@ -2,17 +2,13 @@
 import AVFoundation
 import SpriteKit
 
-private let soundBaseInstance = SoundBase()
-
 public class SoundBase {
     
     public var playerBackground: AVAudioPlayer?
     public var player: AVAudioPlayer?
     var isPlaying = false
     
-    public class func sharedInstance() -> SoundBase {
-        return soundBaseInstance
-    }
+    static let sharedInstance = SoundBase() // Singleton
     
     let bubbleTouchSound0 = SKAction.playSoundFileNamed("ah", waitForCompletion: false)
     let bubbleTouchSound1 = SKAction.playSoundFileNamed("burp1", waitForCompletion: false)

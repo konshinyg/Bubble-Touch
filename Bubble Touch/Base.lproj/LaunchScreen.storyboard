@@ -24,23 +24,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubbleTittleImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="uca-Kf-DKl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <visualEffectView opaque="NO" alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8I-O4-uaE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9Sb-96-ML6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uca-Kf-DKl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EM1-r8-qLh"/>
                             <constraint firstItem="uca-Kf-DKl" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="GFj-Dj-RM4"/>
-                            <constraint firstAttribute="trailing" secondItem="N8I-O4-uaE" secondAttribute="trailing" id="cZX-8w-ObP"/>
-                            <constraint firstItem="N8I-O4-uaE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ozu-lR-Dvm"/>
-                            <constraint firstItem="N8I-O4-uaE" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="qVq-Ec-6Qk"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="N8I-O4-uaE" secondAttribute="bottom" id="tAU-ZL-PiK"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="uca-Kf-DKl" secondAttribute="bottom" id="wEc-1Y-vMO"/>
                             <constraint firstAttribute="trailing" secondItem="uca-Kf-DKl" secondAttribute="trailing" id="yY1-HS-Ad1"/>
                         </constraints>
