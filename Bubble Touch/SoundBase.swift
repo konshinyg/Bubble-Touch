@@ -52,10 +52,17 @@ public class SoundBase {
     let bubbleTouchSound39 = SKAction.playSoundFileNamed("pu15", waitForCompletion: false)
     let bubbleTouchSound40 = SKAction.playSoundFileNamed("burp4", waitForCompletion: false)
     let bubbleTouchSound41 = SKAction.playSoundFileNamed("burp5", waitForCompletion: false)
+    let bubbleTouchSound42 = SKAction.playSoundFileNamed("BOY_LAFF", waitForCompletion: false)
+    let bubbleTouchSound43 = SKAction.playSoundFileNamed("GFY", waitForCompletion: false)
+    let bubbleTouchSound44 = SKAction.playSoundFileNamed("GIGGLEDY", waitForCompletion: false)
+    let bubbleTouchSound45 = SKAction.playSoundFileNamed("UHH", waitForCompletion: false)
+    
+    let blueBallTouchSound = SKAction.playSoundFileNamed("tada", waitForCompletion: false)
+    let bombTouchSound = SKAction.playSoundFileNamed("bombRumble", waitForCompletion: false)
     
     var soundsArray = [SKAction]()
     init() {
-        soundsArray = [bubbleTouchSound0, bubbleTouchSound1, bubbleTouchSound2, bubbleTouchSound3, bubbleTouchSound4, bubbleTouchSound5, bubbleTouchSound6, bubbleTouchSound7, bubbleTouchSound8, bubbleTouchSound9, bubbleTouchSound10, bubbleTouchSound11, bubbleTouchSound12, bubbleTouchSound13, bubbleTouchSound14, bubbleTouchSound15, bubbleTouchSound16, bubbleTouchSound17, bubbleTouchSound18, bubbleTouchSound19, bubbleTouchSound20, bubbleTouchSound21, bubbleTouchSound22, bubbleTouchSound23, bubbleTouchSound24, bubbleTouchSound25, bubbleTouchSound26, bubbleTouchSound27, bubbleTouchSound28, bubbleTouchSound29, bubbleTouchSound30, bubbleTouchSound31, bubbleTouchSound32, bubbleTouchSound33, bubbleTouchSound34, bubbleTouchSound35, bubbleTouchSound36, bubbleTouchSound37, bubbleTouchSound38, bubbleTouchSound39, bubbleTouchSound40, bubbleTouchSound41]
+        soundsArray = [bubbleTouchSound0, bubbleTouchSound1, bubbleTouchSound2, bubbleTouchSound3, bubbleTouchSound4, bubbleTouchSound5, bubbleTouchSound6, bubbleTouchSound7, bubbleTouchSound8, bubbleTouchSound9, bubbleTouchSound10, bubbleTouchSound11, bubbleTouchSound12, bubbleTouchSound13, bubbleTouchSound14, bubbleTouchSound15, bubbleTouchSound16, bubbleTouchSound17, bubbleTouchSound18, bubbleTouchSound19, bubbleTouchSound20, bubbleTouchSound21, bubbleTouchSound22, bubbleTouchSound23, bubbleTouchSound24, bubbleTouchSound25, bubbleTouchSound26, bubbleTouchSound27, bubbleTouchSound28, bubbleTouchSound29, bubbleTouchSound30, bubbleTouchSound31, bubbleTouchSound32, bubbleTouchSound33, bubbleTouchSound34, bubbleTouchSound35, bubbleTouchSound36, bubbleTouchSound37, bubbleTouchSound38, bubbleTouchSound39, bubbleTouchSound40, bubbleTouchSound41, bubbleTouchSound42, bubbleTouchSound43, bubbleTouchSound44, bubbleTouchSound45]
     }
     
     public func playSoundEffect(filename: String) {
@@ -66,7 +73,6 @@ public class SoundBase {
             player?.prepareToPlay()
             player?.play()
         } catch {
-            print("couldn't play sound")
             player = nil
         }
     }

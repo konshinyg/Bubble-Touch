@@ -31,6 +31,7 @@ class GameViewController: UIViewController {
         
         let view = self.view as! SKView
         view.presentScene(scene)
+        view.showsNodeCount = true
         view.ignoresSiblingOrder = true
         scene.gameViewControllerBridge = self
         

@@ -10,7 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var viewTouchLocation = CGPoint()
+    var bubbleTouchLocation = CGPoint()
+    var blueBallTouchLocation = CGPoint()
+    var bombTouchLocation = CGPoint()
     var score = 0
     var gameViewControllerBridge: GameViewController!
     var sec = 60
@@ -20,26 +22,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bubble = SKSpriteNode()
     var wall_left = SKSpriteNode()
     var wall_right = SKSpriteNode()
+    var blueBall = SKSpriteNode()
+    var bomb = SKSpriteNode()
     
     // Textures
     var bgTexture: SKTexture!
     var bubbleTexture: SKTexture!
     var wallTexture: SKTexture!
-    var bubbleBurstTextureArray = [SKTexture]()
+    var burstTextureArray = [SKTexture]()
+    var bombTextureArray = [SKTexture]()
+    var blueBallTexture: SKTexture!
     
     // Objects
     var bgObject = SKNode()
     var bubbleObject = SKNode()
+    var blueBallObject = SKNode()
+    var bombObject = SKNode()
     var wallsObject = SKNode()
     
     // Timers
     var bubbleTimer = Timer()
+    var surpriseTimer = Timer()
     var gameTimer = Timer()
     var gameTimerUpdater = Timer()
+    
     
     // Bit masks
     var bubbleGroup: UInt32 = 0x1 << 1
     var wallsGroup: UInt32 = 0x1 << 2
+    var surpriseGroup: UInt32 = 0x1 << 3
     
     // Sounds
     var bells = SKAction.playSoundFileNamed("bells.wav", waitForCompletion: false)
@@ -57,6 +68,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(bgObject)
         self.addChild(bubbleObject)
         self.addChild(wallsObject)
+        self.addChild(blueBallObject)
+        self.addChild(bombObject)
     }
     
     func createGame() {
@@ -68,6 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func stopGame() {
         bubbleTimer.invalidate()
+        surpriseTimer.invalidate()
         gameTimer.invalidate()
         gameTimerUpdater.invalidate()
         
@@ -85,6 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func timersFunc() {
         bubbleTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(createBubble), userInfo: nil, repeats: true)
+        surpriseTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(createSurprise), userInfo: nil, repeats: true)
         gameTimer = Timer.scheduledTimer(timeInterval: 61, target: self, selector: #selector(stopGame), userInfo: nil, repeats: false)
         gameTimerUpdater = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(gameTimerUpdate), userInfo: nil, repeats: true)
     }
@@ -147,10 +162,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // size & position choosing
-        let sizeRand = CGFloat(UInt32(50) + arc4random() % 25)
+        let sizeRand = CGFloat(UInt32(self.frame.size.width/7.5) + arc4random() % UInt32(self.frame.size.width/15))
         bubble.size.width = sizeRand
         bubble.size.height = sizeRand
-        let bubblePositionChoosing = arc4random() % 275
+        let bubblePositionChoosing = arc4random() % UInt32(self.frame.size.width * 0.7)
         bubble.position = CGPoint(x: sizeRand/2 + CGFloat(bubblePositionChoosing), y: -self.frame.size.height/6)
         
         // physics
@@ -163,16 +178,104 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bubble.physicsBody?.allowsRotation = true
         
         // movement choosing
-        let bubbleDirectionChoosing = arc4random() % 2
-        var bubbleMovementChoosing = Int32(arc4random() % 275)
-        if bubbleDirectionChoosing == 0 { bubbleMovementChoosing *= -1 }
+        var movement = Int32(arc4random() % UInt32(self.frame.size.height * 0.4))
+        if arc4random() % 2 == 0 { movement = -movement }
         let bubbleDuration = (arc4random() % 3) + 5
-        let moveBubble = SKAction.moveBy(x: CGFloat(bubbleMovementChoosing), y: self.frame.size.height + self.frame.size.height/2, duration: TimeInterval(bubbleDuration))
-        let removeBubble = SKAction.removeFromParent()
-        let moveBubbleRepeater = SKAction.repeatForever(SKAction.sequence([moveBubble, removeBubble]))
-        
+        let move = SKAction.moveBy(x: CGFloat(movement), y: self.frame.size.height * 1.5, duration: TimeInterval(bubbleDuration))
+        let remove = SKAction.removeFromParent()
+        let moveBubbleRepeater = SKAction.repeatForever(SKAction.sequence([move, remove]))
         bubble.run(moveBubbleRepeater)
         
         bubbleObject.addChild(bubble)
     }
+    
+    func createSurprise() {
+        let surprise = arc4random() % 2
+        if surprise == 0 {
+            createBlueBall()
+        } else {
+            createBomb()
+        }
+    }
+    
+    func createBlueBall() {
+        blueBallTexture = SKTexture(imageNamed: "blueBall.png")
+        blueBall = SurpriseNode(texture: blueBallTexture)
+        
+        // sizing & position
+        let sizeRand = CGFloat(self.frame.size.width/7.5)
+        blueBall.size.width = sizeRand
+        blueBall.size.height = sizeRand
+        let blueBallPositionChoosing = arc4random() % UInt32(self.frame.size.width * 0.7)
+        blueBall.position = CGPoint(x: sizeRand/2 + CGFloat(blueBallPositionChoosing), y: -self.frame.size.height/6)
+        
+        // physics
+        blueBall.physicsBody = SKPhysicsBody(circleOfRadius: sizeRand/2)
+        blueBall.physicsBody?.categoryBitMask = surpriseGroup
+        blueBall.physicsBody?.contactTestBitMask = wallsGroup
+        blueBall.physicsBody?.collisionBitMask = wallsGroup
+        blueBall.physicsBody?.isDynamic = true
+        blueBall.physicsBody?.affectedByGravity = false
+        blueBall.physicsBody?.allowsRotation = true
+        
+        // movement & direction
+        var movement = Int32(arc4random() % UInt32(self.frame.size.height * 0.4))
+        let blueBallDuration = (arc4random() % 3) + 3
+        if arc4random() % 2 == 0 { movement = -movement }
+        let move = SKAction.moveBy(x: CGFloat(movement), y: self.frame.size.height * 1.5, duration: TimeInterval(blueBallDuration))
+        let remove = SKAction.removeFromParent()
+        let moveBlueBallRepeater = SKAction.repeatForever(SKAction.sequence([move, remove]))
+
+//        let moveBlueBallRepeater = bomb.nodeMovement(duration: bombDuration, frameHeight: self.frame.size.height)
+        blueBall.run(moveBlueBallRepeater)
+        
+        blueBallObject.addChild(blueBall)
+    }
+    
+    func createBomb() {
+        bombTextureArray = [SKTexture(imageNamed: "bomb.png"),SKTexture(imageNamed: "bomb2.png"),SKTexture(imageNamed: "bomb3.png"),SKTexture(imageNamed: "bomb4.png")]
+        let bombAnimation = SKAction.animate(with: bombTextureArray, timePerFrame: 0.05)
+        let bombRepeater = SKAction.repeatForever(bombAnimation)
+        bomb.run(bombRepeater)
+        
+        // sizing & position
+        let sizeRand = CGFloat(self.frame.size.width/7.5)
+        bomb.size.width = sizeRand
+        bomb.size.height = sizeRand*1.35
+        let bombPositionChoosing = arc4random() % UInt32(self.frame.size.width * 0.7)
+        bomb.position = CGPoint(x: sizeRand/2 + CGFloat(bombPositionChoosing), y: -self.frame.size.height/6)
+        
+        // physics
+        bomb.physicsBody = SKPhysicsBody(circleOfRadius: sizeRand/2)
+        bomb.physicsBody?.categoryBitMask = surpriseGroup
+        bomb.physicsBody?.contactTestBitMask = wallsGroup
+        bomb.physicsBody?.collisionBitMask = wallsGroup
+        bomb.physicsBody?.isDynamic = true
+        bomb.physicsBody?.affectedByGravity = false
+        bomb.physicsBody?.allowsRotation = true
+        
+        // movement & direction
+        var movement = Int32(arc4random() % UInt32(self.frame.size.height * 0.4))
+        let bombDuration = (arc4random() % 3) + 7
+        if arc4random() % 2 == 0 { movement = -movement }
+        let move = SKAction.moveBy(x: CGFloat(movement), y: self.frame.size.height * 1.5, duration: TimeInterval(bombDuration))
+        let remove = SKAction.removeFromParent()
+        let moveBombRepeater = SKAction.repeatForever(SKAction.sequence([move, remove]))
+
+//        let moveBombRepeater = bomb.nodeMovement(duration: bombDuration, frameHeight: self.frame.size.height)
+        bomb.run(moveBombRepeater)
+        
+        bombObject.addChild(bomb)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
